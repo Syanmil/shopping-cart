@@ -2,15 +2,6 @@
 var items = require('../models/item.js')
 var multer = require('multer');
 var im = require('imagemagick');
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/uploads')
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname)
-  }
-})
-var upload = multer({ storage: storage })
 
 let itemController = {
   create : function(req, res){
@@ -20,21 +11,21 @@ let itemController = {
       width:   350
     }, function(err, stdout, stderr){
       if (err) throw err;
-      let data = {
-        name : req.body.name,
-        picture : req.file.path,
-        stock: req.body.stock,
-        price: req.body.price
-      }
-      let newitems = items(data)
-      newitems.save(function(err){
-        if(err) throw err;
-        res.json({
-          msg: 'item Created!',
-          item: newitems
-        })
-      })
     });
+    let data = {
+      name : req.body.name,
+      picture : req.file.originalname,
+      stock: req.body.stock,
+      price: req.body.price
+    }
+    let newitems = items(data)
+    newitems.save(function(err){
+      if(err) throw err;
+      res.send({
+        msg: 'item Created!',
+        item: newitems
+      })
+    })
   },
   findAll: function(req, res){
     items.find({}, function(err, items){
