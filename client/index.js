@@ -48,7 +48,7 @@ function listAllItem(){
       $('#itemlist').empty()
       data.forEach(function(item){
         $('#itemlist').append(
-          `<div class="col-xs-4">
+          `<div class="col-xs-4 grid-item">
             <div class="thumbnail" style='text-align:center'>
               <label style="text-align:center">${item.name}</label>
               <img src="http://localhost:3000/uploads/${item.picture}">
@@ -67,6 +67,7 @@ function listAllItem(){
     }
   }).done(function(){
     addlistener()
+    layouting()
   })
 }
 function checkout() {
@@ -92,7 +93,7 @@ function addlistener(){
     let price = $(`#price${this.id}`).val()
     let name = $(`#name${this.id}`).val()
     addToCart(name, price, this.id)
-    alert('Added To Cart '+name);
+    // alert('Added To Cart '+name);
   })
   $('#mycart').on('click', '.btn.btn-success.btn-lg.checkout', function(){
     checkout()
@@ -100,9 +101,13 @@ function addlistener(){
     alert('Items Will be Arrived in Your Place in a Hour');
   })
 }
+function layouting(){
+  $('.grid').masonry({
+  itemSelector: '.grid-item',
+});
+}
 $('form#createdItem').submit(function(e){
   var formData = new FormData($('form#createdItem')[0]);
-  console.log(formData);
   e.preventDefault()
   let name = $('input[name=name]').val()
   let stock = $('input[name=stock]').val()
@@ -119,10 +124,11 @@ $('form#createdItem').submit(function(e){
       console.log(status);
     }
   }).done(function(){
-    // $('#addNewItem').modal('hide')
-    // $('input[name=name]').val("name")
-    // $('input[name=stock]').val("stock")
-    // $('input[name=price]').val("price")
-    // $('input[name=picture]').val("")
+    $('#addNewItem').modal('hide');
+    $('input[name=name]').val("name");
+    $('input[name=stock]').val("stock");
+    $('input[name=price]').val("price");
+    $('input[name=picture]').val("");
+    listAllItem();
   })
 })

@@ -8,7 +8,7 @@ let itemController = {
     im.resize({
       srcPath: req.file.path,
       dstPath: req.file.path,
-      width:   350
+      width: 360,
     }, function(err, stdout, stderr){
       if (err) throw err;
     });
