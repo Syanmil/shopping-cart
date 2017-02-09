@@ -51,7 +51,7 @@ function listAllItem(){
           `<div class="col-xs-4">
             <div class="thumbnail" style='text-align:center'>
               <label style="text-align:center">${item.name}</label>
-              <img src=${item.picture}>
+              <img src="http://localhost:3000/uploads/${item.picture}">
               <p>Stock: ${item.stock}</p>
               <p>Price: ${item.price}</p>
               <button type="button" name="button" class="btn btn-success cartlist" id="${item._id}">Add to Cart</button>
@@ -100,3 +100,29 @@ function addlistener(){
     alert('Items Will be Arrived in Your Place in a Hour');
   })
 }
+$('form#createdItem').submit(function(e){
+  var formData = new FormData($('form#createdItem')[0]);
+  console.log(formData);
+  e.preventDefault()
+  let name = $('input[name=name]').val()
+  let stock = $('input[name=stock]').val()
+  let price = $('input[name=price]').val()
+  let picture = $('input[name=picture]').val()
+  $.ajax({
+    url: 'http://localhost:3000/api/items',
+    type: 'POST',
+    data: formData,
+    dataType: 'json',
+    contentType: false,
+    processData: false,
+    success: function(status) {
+      console.log(status);
+    }
+  }).done(function(){
+    // $('#addNewItem').modal('hide')
+    // $('input[name=name]').val("name")
+    // $('input[name=stock]').val("stock")
+    // $('input[name=price]').val("price")
+    // $('input[name=picture]').val("")
+  })
+})

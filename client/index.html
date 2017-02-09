@@ -3,18 +3,61 @@
   <head>
     <meta charset="utf-8">
     <title>Shopping Cart</title>
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous">
+    </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script
-		  src="https://code.jquery.com/jquery-3.1.1.min.js"
-		  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-		  crossorigin="anonymous">
-    </script>
   </head>
   <body>
     <div class="container">
       <div class="jumbotron">
         <h1>Welcome To SmileShop</h1>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewItem">Add New Product</button>
+        <div class="modal fade" id="addNewItem" tabindex="-1" role="dialog" aria-labelledby="addNewFoodProduct">
+          <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="addNewFoodProduct">Add New Food Product</h4>
+              </div>
+              <div class="modal-body">
+                <form class="form-horizontal" id="createdItem" enctype="multipart/form-data">
+                  <div class="form-group">
+                    <label class="col-sm-3">Name</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="name" value="name" required>
+                    </div>
+                  </div>
+                  <div class="form-group" method="post">
+                    <label class="col-sm-3">Price</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="price" value="price" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-3">Stock</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="stock" value="stock" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-9">File input</label>
+                    <input type="file" name="picture">
+                  </div>
+                  <div class="modal-footer">
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary">Add Item</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="row">
         <div class="col-xs-9">
