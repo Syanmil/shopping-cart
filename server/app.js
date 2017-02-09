@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var multer = require('multer');
 var mongoose = require('mongoose');
 var cors = require('cors')
 require('dotenv').config()
@@ -38,7 +39,6 @@ app.use(cors())
 app.use('/', index);
 // app.use('/users', users);
 app.use('/api/items', items);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

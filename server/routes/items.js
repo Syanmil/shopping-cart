@@ -4,7 +4,8 @@ var items = require('../models/item.js');
 var itemController = require('../controller/itemController.js')
 
 
-router.post('/', itemController.create);
+
+// router.post('/', upload.single('picture'), itemController.create);
 router.get('/', itemController.findAll);
 router.put('/', itemController.updateStock);
 
